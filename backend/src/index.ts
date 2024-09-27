@@ -2,11 +2,19 @@ import express from "express"
 import cors from "cors"
 import "dotenv/config"
 import { PrismaClient } from "@prisma/client"
+import { auth } from "express-oauth2-jwt-bearer"
 
 const app = express()
 const prisma = new PrismaClient()
 // middlewares
 
+const jwtCheck = auth({
+    audience: 'todo-assignment',
+    issuerBaseURL: 'https://dev-nazibul.us.auth0.com/',
+    tokenSigningAlg: 'RS256'
+})
+
+app.use(jwtCheck)
 app.use(cors())
 app.use(express.json())
 
