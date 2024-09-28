@@ -3,6 +3,7 @@ import cors from "cors"
 import "dotenv/config"
 import { PrismaClient } from "@prisma/client"
 import { auth } from "express-oauth2-jwt-bearer"
+import userRouter from "./routes/user.routes"
 
 const app = express()
 const prisma = new PrismaClient()
@@ -14,9 +15,14 @@ const jwtCheck = auth({
     tokenSigningAlg: 'RS256'
 })
 
+app.use(cors({
+    origin: 'http://localhost:5173'
+}))
 app.use(jwtCheck)
-app.use(cors())
 app.use(express.json())
+
+// Router
+app.use('/api/v1/user', userRouter)
 
 const startServer = async () => {
     try {
