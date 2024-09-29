@@ -3,7 +3,7 @@ import { Input } from '@/components/ui/input'
 import { useAuth0 } from '@auth0/auth0-react'
 import React, { useState } from 'react'
 
-const Profile = () => {
+const Header = () => {
     const { user, logout } = useAuth0()
     const [todoInput, setTodoInput] = useState('')
     
@@ -24,4 +24,4 @@ const Profile = () => {
     )
 }
 
-export default Profile
+export default Header

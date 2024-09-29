@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Profile from './Profile'
+import Header from './Header'
 
 const Home = () => {
     const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0()
@@ -21,7 +21,7 @@ const Home = () => {
         <div className='min-h-screen flex justify-center items-center'>
             {isAuthenticated ?
                 (
-                    <Profile/>
+                    <Header/>
                 ) :
                 (<div className='flex flex-col gap-3'>
 
