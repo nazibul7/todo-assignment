@@ -1,8 +1,10 @@
 import React, { createContext, useState } from "react"
 
+interface PropType{
+    children:React.ReactNode
+}
 interface Todo {
-    title: string,
-    descriptions: string,
+    todo: string,
     checked: boolean
 }
 interface TodoContextType {
@@ -18,13 +20,13 @@ export const TodoContext = createContext<TodoContextType>({
     updateTodo: () => { }
 })
 
-export const TodoProvider = ({ children }) => {
+export const TodoProvider = ({ children }:PropType) => {
     const [todos, setTodos] = useState<Todo[]>([])
     const addTodo = (todo: Todo) => {
         setTodos((prevTodos) => [...prevTodos, todo])
     }
     const deleteTodo = (id: number) => {
-        setTodos((prevTodo) => prevTodo.filter((todo, i) => i != id))
+        setTodos((prevTodo) => prevTodo.filter((_, i) => i != id))
     }
     const updateTodo = (id: number, updateField: Partial<Todo>) => {
         setTodos((prevTodod) =>
