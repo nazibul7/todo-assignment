@@ -7,13 +7,13 @@ const prisma = new PrismaClient()
 export const createTodo = async (req: Request, res: Response) => {
     try {
         const userId = req.userId
-        const { title, descriptions, checked }: Todo = createTodoSchema.parse(req.body)
-        const todo = await prisma.todos.create({
+        const { todo, checked }: Todo = createTodoSchema.parse(req.body)
+        const newTodo = await prisma.todos.create({
             data: {
-                title, descriptions, checked, userid: userId
+                todo, checked, userid: userId
             }
         })
-        return res.status(201).json(todo)
+        return res.status(201).json(newTodo)
     } catch (error) {
         return res.status(500).json(error)
     }
@@ -52,8 +52,7 @@ export const updateTodo = async (req: Request, res: Response) => {
         const updateTodo = await prisma.todos.update({
             where: { id: todoId },
             data: {
-                title: validatedData.title,
-                descriptions: validatedData.descriptions,
+                todo: validatedData.todo,
                 checked: validatedData.checked
             }
         })
