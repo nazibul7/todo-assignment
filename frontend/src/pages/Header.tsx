@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { useAuth0 } from '@auth0/auth0-react'
 import TodoInput from "../components/TodoInput"
+import TodoList from "../components/TodoList"
 
 const Header = () => {
     const { user, logout } = useAuth0()
@@ -11,7 +12,11 @@ const Header = () => {
                 <Button onClick={() => logout()}>Logout</Button>
             </div>
             <div>
-                <TodoInput/>
+                <TodoInput />
+            </div>
+            <div className="my-4 h-px bg-gray-400"></div>
+            <div>
+                <TodoList />
             </div>
         </div>
     )

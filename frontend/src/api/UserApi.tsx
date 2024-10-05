@@ -17,7 +17,7 @@ export const useCreateUser = () => {
                 auth0Id: userdata.auth0Id,
                 email: userdata.email
             }
-            const res = await axios.post(`${backendUrl}/api/v1/user/save-user`, userPayload, {
+            await axios.post(`${backendUrl}/api/v1/user/save-user`, userPayload, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
                     'Content-Type': "application/json"
